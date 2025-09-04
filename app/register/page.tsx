@@ -7,7 +7,6 @@ import Link from "next/link";
 export default function RegisterPage() {
   const [preview, setPreview] = useState<string | null>(null);
 
-  // handle file input change
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -16,8 +15,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 p-6">
-      {/* Register Form */}
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 p-6">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
         <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">
           Create an Account
@@ -122,15 +120,17 @@ export default function RegisterPage() {
             Login here
           </Link>
         </p>
-      </div>
 
-      {/* Back to Home Button */}
-      <Link
-        href="/"
-        className="mt-4 bg-white text-purple-600 font-semibold px-6 py-2 rounded-full shadow-lg hover:bg-gray-100 transition"
-      >
-        &larr; Back to Home
-      </Link>
+        {/* Back to Home Button */}
+        <div className="mt-4 text-center">
+          <Link
+            href="/"
+            className="inline-block bg-white text-gray-800 px-4 py-2 rounded-xl shadow-md hover:bg-gray-200 transition font-semibold"
+          >
+            Back to Home
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
