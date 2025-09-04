@@ -1,14 +1,25 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function LoginPage() {
+  const router = useRouter();
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    // TODO: เพิ่ม logic ตรวจสอบ email/password
+    router.push("/dashboard"); // หลัง login เสร็จ ไปหน้า dashboard
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 p-6">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 p-6">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
         <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">
           Login
         </h1>
 
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleLogin}>
           {/* Email */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
@@ -50,12 +61,20 @@ export default function LoginPage() {
 
         {/* Register link */}
         <p className="text-sm text-gray-600 text-center mt-6">
-          Don&apos;t have an account?{" "}
+          Don't have an account?{" "}
           <Link href="/register" className="text-indigo-500 font-semibold hover:underline">
             Register here
           </Link>
         </p>
       </div>
+
+      {/* Back to Home Button */}
+      <Link
+        href="/"
+        className="mt-4 bg-white text-purple-600 font-semibold px-6 py-2 rounded-full shadow-lg hover:bg-gray-100 transition"
+      >
+        &larr; Back to Home
+      </Link>
     </div>
   );
 }

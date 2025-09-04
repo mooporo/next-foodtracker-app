@@ -10,7 +10,7 @@ import FoodImage from "./images/food.png";
 const HomePage = () => {
   return (
     <Fragment>
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 p-4 text-center">
+      <div className="flex flex-col min-h-screen items-center justify-center bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 p-4 text-center">
         <div className="bg-white/20 backdrop-blur-lg p-8 md:p-12 rounded-3xl shadow-2xl max-w-lg w-full transition-all duration-300 ease-in-out hover:shadow-3xl">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight drop-shadow-md mb-2 sm:mb-4 animate-fade-in-down">
             Welcome to Food Tracker
@@ -44,6 +44,11 @@ const HomePage = () => {
             </Link>
           </div>
         </div>
+
+        {/* Footer เครดิต */}
+        <footer className="mt-6 text-white text-sm font-medium">
+          Created by ©Intorn | DTI SAU 2025
+        </footer>
       </div>
 
       <style jsx global>{`

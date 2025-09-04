@@ -16,7 +16,8 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 p-6">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 p-6">
+      {/* Register Form */}
       <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
         <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">
           Create an Account
@@ -122,6 +123,14 @@ export default function RegisterPage() {
           </Link>
         </p>
       </div>
+
+      {/* Back to Home Button */}
+      <Link
+        href="/"
+        className="mt-4 bg-white text-purple-600 font-semibold px-6 py-2 rounded-full shadow-lg hover:bg-gray-100 transition"
+      >
+        &larr; Back to Home
+      </Link>
     </div>
   );
 }
