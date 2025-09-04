@@ -1,0 +1,136 @@
+"use client";
+
+import { useState, ChangeEvent } from "react";
+import Image from "next/image";
+import Link from "next/link";
+
+export default function AddFoodPage() {
+  const [foodImagePreview, setFoodImagePreview] = useState<string | null>(null);
+
+  // Mock data สำหรับผู้ใช้งาน
+  const currentUser = {
+    fullName: "Intorn Rungroadsawakun",
+    profilePic: "/images/food.png", // ตัวอย่างรูป user
+  };
+
+  // handle file input change
+  const handleFoodImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFoodImagePreview(URL.createObjectURL(file));
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 p-6 flex flex-col items-center">
+      {/* Header: User info + Profile link */}
+      <div className="w-full max-w-2xl flex items-center justify-between mb-6">
+        <div className="flex items-center gap-4 bg-white/30 backdrop-blur-lg p-2 rounded-xl shadow-md">
+          <Image
+            src={currentUser.profilePic}
+            alt="User"
+            width={50}
+            height={50}
+            className="rounded-full object-cover"
+          />
+          <Link
+            href="/profile"
+            className="text-white font-semibold hover:underline"
+          >
+            {currentUser.fullName}
+          </Link>
+        </div>
+
+        <Link
+          href="/dashboard"
+          className="bg-white/30 backdrop-blur-lg text-white font-semibold px-4 py-2 rounded-xl shadow-md hover:bg-white/50 transition"
+        >
+          Back to Dashboard
+        </Link>
+      </div>
+
+      {/* Form */}
+      <div className="w-full max-w-2xl bg-white/20 backdrop-blur-lg rounded-2xl shadow-xl p-8">
+        <h1 className="text-2xl font-bold text-white text-center mb-6">
+          Add New Food
+        </h1>
+
+        <form className="space-y-4">
+          {/* Food Name */}
+          <div>
+            <label className="block text-white font-medium mb-1">
+              Food Name
+            </label>
+            <input
+              type="text"
+              placeholder="Enter food name"
+              className="w-full px-4 py-2 rounded-xl outline-none focus:ring-2 focus:ring-purple-400"
+              required
+            />
+          </div>
+
+          {/* Meal Type */}
+          <div>
+            <label className="block text-white font-medium mb-1">
+              Meal Type
+            </label>
+            <select className="w-full px-4 py-2 rounded-xl outline-none focus:ring-2 focus:ring-purple-400">
+              <option value="">Select meal</option>
+              <option value="breakfast">Breakfast</option>
+              <option value="lunch">Lunch</option>
+              <option value="dinner">Dinner</option>
+              <option value="snack">Snack</option>
+            </select>
+          </div>
+
+          {/* Food Image */}
+          <div>
+            <label className="block text-white font-medium mb-1">
+              Food Image
+            </label>
+            <div className="flex items-center gap-4">
+              <label className="cursor-pointer bg-purple-500 text-white px-4 py-2 rounded-xl hover:bg-purple-600 transition">
+                Upload
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleFoodImageChange}
+                />
+              </label>
+              {foodImagePreview && (
+                <Image
+                  src={foodImagePreview}
+                  alt="Food Preview"
+                  width={50}
+                  height={50}
+                  className="rounded-full object-cover"
+                />
+              )}
+            </div>
+          </div>
+
+          {/* Date */}
+          <div>
+            <label className="block text-white font-medium mb-1">
+              Date
+            </label>
+            <input
+              type="date"
+              className="w-full px-4 py-2 rounded-xl outline-none focus:ring-2 focus:ring-purple-400"
+              required
+            />
+          </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            className="w-full bg-indigo-500 text-white py-2 rounded-xl font-medium hover:bg-indigo-600 transition"
+          >
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
